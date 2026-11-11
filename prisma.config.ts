@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { defineConfig, env } from 'prisma/config';
+import { defineConfig } from 'prisma/config';
 
 // Prisma 7: строка подключения и путь к сиду задаются здесь, а не в schema.prisma.
 export default defineConfig({
@@ -9,6 +9,8 @@ export default defineConfig({
     seed: 'node prisma/seed.js',
   },
   datasource: {
-    url: env('DATABASE_URL'),
+    // Не env(): иначе `npm install` (postinstall → prisma generate) падает,
+    // пока .env ещё не создан. Генерации клиента строка подключения не нужна.
+    url: process.env.DATABASE_URL ?? '',
   },
 });
