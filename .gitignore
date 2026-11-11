@@ -1,0 +1,26 @@
+# Зависимости
+node_modules/
+
+# Секреты и локальная конфигурация (.env.example публикуется)
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel/
+
+# Отчёты и артефакты
+coverage/
+*.log
+npm-debug.log*
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# IDE и инструменты разработки
+.vscode/
+.idea/
+.claude/
+.impeccable/
+skills-lock.json

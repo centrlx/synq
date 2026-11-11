@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Отзывы покупателей — SYNQ</title>
+  <meta name="description" content="Отзывы покупателей SYNQ: оценки и впечатления о VST-плагинах, DAW и подписках.">
+  <meta name="theme-color" content="#fbfbfd">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400..800&display=swap">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body data-page="reviews">
+  <main id="main" class="container">
+    <header class="page-head reviews-head">
+      <div>
+        <h1>Отзывы покупателей</h1>
+        <p>Только от тех, кто купил: оставить отзыв можно после оплаченного заказа.</p>
+      </div>
+    </header>
+
+    <section class="reviews-overview" id="overview" aria-label="Сводка рейтинга"></section>
+
+    <section aria-labelledby="feed-title">
+      <div class="reviews-feed__head">
+        <h2 class="section__title" id="feed-title">Что пишут покупатели</h2>
+        <div class="reviews-feed__controls">
+          <div class="chips" id="rating-filter" role="group" aria-label="Фильтр по оценке"></div>
+          <label>
+            <span class="visually-hidden">Сортировка</span>
+            <select class="select reviews-sort" id="review-sort">
+              <option value="newest">Сначала новые</option>
+              <option value="best">Сначала лучшие</option>
+              <option value="worst">Сначала критичные</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="reviews-feed" id="feed" aria-live="polite"></div>
+      <div class="review-more"><button class="btn btn--ghost" type="button" id="more" hidden>Показать ещё</button></div>
+    </section>
+  </main>
+  <script type="module" src="/js/reviews.js"></script>
+</body>
+</html>

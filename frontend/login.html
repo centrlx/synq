@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Вход — SYNQ</title>
+  <meta name="description" content="Вход в аккаунт SYNQ.">
+  <meta name="theme-color" content="#fbfbfd">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400..800&display=swap">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body data-page="login">
+  <main id="main" class="auth">
+    <aside class="auth__aside" id="auth-aside">
+      <a class="logo auth__logo" href="/" aria-label="SYNQ — на главную"><span class="logo__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>SYNQ</a>
+      <h2>С возвращением в&nbsp;студию.</h2>
+      <p>Войдите, чтобы оформить заказ и скачать купленные файлы.</p>
+    </aside>
+    <div class="auth__main">
+      <form class="auth__form" id="login-form" novalidate>
+        <div>
+          <h1>Вход</h1>
+        </div>
+        <p class="lead">Используйте email и пароль вашего аккаунта SYNQ.</p>
+        <div class="form-alert" id="form-alert" role="alert" hidden></div>
+        <div class="field">
+          <label class="field__label" for="email">Email</label>
+          <input class="input" id="email" name="email" type="email" autocomplete="email" required maxlength="254">
+          <span class="field__error"></span>
+        </div>
+        <div class="field">
+          <label class="field__label" for="password">Пароль</label>
+          <input class="input" id="password" name="password" type="password" autocomplete="current-password" required maxlength="72">
+          <span class="field__error"></span>
+        </div>
+        <button class="btn btn--lg btn--block" type="submit">Войти</button>
+        <p class="auth__switch">Нет аккаунта? <a href="/register" id="switch-link">Создать</a></p>
+      </form>
+    </div>
+  </main>
+  <script type="module" src="/js/auth.js"></script>
+</body>
+</html>

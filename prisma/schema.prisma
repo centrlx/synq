@@ -1,0 +1,139 @@
+// SYNQ — схема базы данных интернет-магазина цифровых товаров
+// для музыкального производства (плагины, сэмпл-паки, пресеты, DAW-шаблоны).
+//
+// Строка подключения задаётся в prisma.config.ts (переменная DATABASE_URL).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELLED
+}
+
+/// Пользователь магазина. Пароль хранится только в виде bcrypt-хеша.
+model User {
+  id           String   @id @default(uuid()) @db.Uuid
+  email        String   @unique @db.VarChar(254)
+  name         String   @db.VarChar(80)
+  passwordHash String   @map("password_hash")
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  orders  Order[]
+  reviews Review[]
+
+  @@map("users")
+}
+
+/// Категория товаров (например, «Синтезаторы», «Сэмпл-паки»).
+model Category {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @unique @db.VarChar(80)
+  slug        String   @unique @db.VarChar(100)
+  description String?  @db.VarChar(1000)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  products Product[]
+
+  @@map("categories")
+}
+
+/// Цифровой товар. Характеристики: разработчик, версия, форматы, платформы.
+/// Остаток (stock) — количество доступных лицензий; null — без ограничений.
+model Product {
+  id          String    @id @default(uuid()) @db.Uuid
+  name        String    @db.VarChar(120)
+  slug        String    @unique @db.VarChar(140)
+  description String    @db.Text
+  price       Decimal   @db.Decimal(10, 2)
+  /// Цена со скидкой; действует, пока saleEndsAt не наступил (NULL — бессрочно)
+  salePrice   Decimal?  @map("sale_price") @db.Decimal(10, 2)
+  saleEndsAt  DateTime? @map("sale_ends_at")
+  developer   String?   @db.VarChar(80)
+  version     String?   @db.VarChar(30)
+  formats     String[]  @default([])
+  platforms   String[]  @default([])
+  stock       Int?
+  imageUrl    String?   @map("image_url")
+  imagePath   String?   @map("image_path")
+  filePath    String?   @map("file_path")
+  fileName    String?   @map("file_name") @db.VarChar(255)
+  fileSize    Int?      @map("file_size")
+  isActive    Boolean   @default(true) @map("is_active")
+  /// Счётчик просмотров страницы товара (для рейтинга «Самое популярное»)
+  viewsCount  Int       @default(0) @map("views_count")
+  categoryId  String    @map("category_id") @db.Uuid
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  // Restrict: категорию с товарами удалить нельзя (иначе потеряется каталог)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  orders   Order[]
+  reviews  Review[]
+
+  @@index([categoryId])
+  @@index([isActive, createdAt])
+  @@index([name])
+  @@index([salePrice])
+  @@map("products")
+}
+
+/// Заказ одного товара пользователем. Цена фиксируется на момент покупки.
+model Order {
+  id              String      @id @default(uuid()) @db.Uuid
+  userId          String      @map("user_id") @db.Uuid
+  productId       String      @map("product_id") @db.Uuid
+  priceAtPurchase Decimal     @map("price_at_purchase") @db.Decimal(10, 2)
+  status          OrderStatus @default(PENDING)
+  /// Момент оплаты и идентификатор транзакции платёжного шлюза
+  paidAt          DateTime?   @map("paid_at")
+  paymentRef      String?     @map("payment_ref") @db.VarChar(64)
+  /// Платёжная система и последние 4 цифры карты (полный номер и CVV не передаются на сервер)
+  cardBrand       String?     @map("card_brand") @db.VarChar(20)
+  cardLast4       String?     @map("card_last4") @db.VarChar(4)
+  createdAt       DateTime    @default(now()) @map("created_at")
+  updatedAt       DateTime    @updatedAt @map("updated_at")
+
+  // Restrict: история заказов защищена от каскадного удаления
+  user    User    @relation(fields: [userId], references: [id], onDelete: Restrict)
+  product Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  @@index([userId, createdAt])
+  @@index([productId])
+  @@index([status])
+  @@map("orders")
+}
+
+/// Отзыв покупателя. Оставить можно только после оплаченного заказа, один отзыв на товар.
+model Review {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @map("user_id") @db.Uuid
+  productId String   @map("product_id") @db.Uuid
+  rating    Int      @db.SmallInt
+  text      String   @db.VarChar(2000)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Cascade: отзыв принадлежит пользователю и товару и без них не имеет смысла
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+  @@index([productId, createdAt])
+  @@index([rating])
+  @@map("reviews")
+}

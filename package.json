@@ -1,0 +1,53 @@
+{
+  "name": "synq",
+  "version": "1.0.0",
+  "description": "SYNQ — REST API интернет-магазина цифровых товаров для музыкального производства",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
+    "dev": "nodemon --watch src --ext js src/server.js",
+    "start": "node src/server.js",
+    "db:migrate": "prisma migrate dev && prisma generate",
+    "db:deploy": "prisma migrate deploy",
+    "db:generate": "prisma generate",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio",
+    "admin:create": "node scripts/create-admin.js",
+    "storage:setup": "node scripts/setup-storage.js",
+    "test:coverage": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand --coverage",
+    "postinstall": "prisma generate"
+  },
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.10.1",
+    "@prisma/client": "^7.10.1",
+    "@supabase/supabase-js": "^2.119.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.4",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.5.0",
+    "pg": "^8.23.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "jest": "^30.5.2",
+    "nodemon": "^3.1.14",
+    "prisma": "^7.10.1",
+    "supertest": "^7.3.2"
+  },
+  "allowScripts": {
+    "@prisma/engines@7.10.1": true,
+    "prisma@7.10.1": true,
+    "bcrypt": false,
+    "@parcel/watcher": false
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}

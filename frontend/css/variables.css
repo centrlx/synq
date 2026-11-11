@@ -1,0 +1,78 @@
+/* SYNQ — дизайн-токены. Чёрно-белая палитра, шрифт Onest, Apple-подобные пропорции. */
+:root {
+  /* Поверхности */
+  --bg: #fbfbfd;
+  --surface: #ffffff;
+  --surface-2: #f5f5f7;
+  --surface-3: #ebebef;
+  --ink: #0a0a0b;
+  --ink-2: #161618;
+  --ink-3: #232326;
+
+  /* Текст */
+  --text: #1d1d1f;
+  --text-2: #6e6e73;
+  --text-3: #86868b;
+  --text-on-ink: #f5f5f7;
+  --text-on-ink-2: #a1a1a6;
+
+  /* Линии */
+  --line: rgba(0, 0, 0, 0.08);
+  --line-strong: rgba(0, 0, 0, 0.16);
+  --line-on-ink: rgba(255, 255, 255, 0.12);
+
+  /* Семантика (приглушённая) */
+  --ok: #1d7a46;
+  --ok-bg: #e8f5ee;
+  --warn: #8a5a00;
+  --warn-bg: #fdf3dc;
+  --danger: #c4231b;
+  --danger-bg: #fdecea;
+  --focus: #0071e3;
+
+  /* Типографика */
+  --font: 'Onest', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.1875rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+  --fs-3xl: clamp(2.25rem, 1.4rem + 3.6vw, 4rem);
+  --fs-hero: clamp(2.75rem, 1.2rem + 6.8vw, 7rem);
+
+  /* Ритм */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --pill: 999px;
+
+  --container: 1200px;
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --nav-h: 56px;
+
+  /* Тени */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.03);
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08), 0 32px 80px rgba(0, 0, 0, 0.14);
+
+  /* Движение (emil-design-eng / apple-design) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-press: 140ms;
+  --dur-fast: 180ms;
+  --dur: 240ms;
+  --dur-slow: 420ms;
+}

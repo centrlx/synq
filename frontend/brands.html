@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Бренды — SYNQ</title>
+  <meta name="description" content="Все разработчики в каталоге SYNQ: VST-плагины, DAW и сервисы для музыкантов.">
+  <meta name="theme-color" content="#fbfbfd">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400..800&display=swap">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body data-page="brands">
+  <main id="main" class="container">
+    <header class="page-head catalog-head">
+      <div>
+        <h1>Бренды</h1>
+        <p id="brands-sub">Разработчики, чьи инструменты есть в каталоге.</p>
+      </div>
+    </header>
+
+    <section class="brands-featured" id="featured" aria-labelledby="featured-title" hidden>
+      <h2 class="brands-heading" id="featured-title">Больше всего товаров</h2>
+      <div class="brands-featured__grid" id="featured-grid"></div>
+    </section>
+
+    <div class="toolbar brands-toolbar" id="toolbar">
+      <div class="brands-toolbar__row">
+        <label class="search">
+          <span class="visually-hidden">Поиск бренда</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"/><path d="m21 21-4.3-4.3"/></svg>
+          <input class="input" type="search" id="brand-search" placeholder="Найти бренд" autocomplete="off" maxlength="80">
+        </label>
+        <nav class="alphabet" id="alphabet" aria-label="Алфавитный указатель"></nav>
+      </div>
+    </div>
+
+    <div id="brands-list" aria-live="polite"></div>
+  </main>
+  <script type="module" src="/js/brands.js"></script>
+</body>
+</html>

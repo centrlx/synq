@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SYNQ — VST-плагины, DAW и подписки</title>
+  <meta name="description" content="SYNQ — магазин VST-плагинов, DAW и подписок на сервисы для музыкантов и саунд-продюсеров.">
+  <meta name="theme-color" content="#fbfbfd">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400..800&display=swap">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body data-page="home">
+  <main id="main">
+    <section class="hero" data-dark-zone>
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <h1 class="hero__title" id="hero-title">Звук, который вы слышите в&nbsp;голове.</h1>
+          <p class="hero__lead">VST-плагины, DAW и подписки на сервисы для музыкантов — в одном каталоге. Лицензионный софт для вашей студии без лишних шагов.</p>
+          <div class="hero__cta">
+            <a class="btn btn--light btn--lg" href="/catalog">Открыть каталог</a>
+          </div>
+          <dl class="hero__stats" id="hero-stats" aria-live="polite"></dl>
+        </div>
+        <div class="hero__wall" id="hero-wall" aria-hidden="true" hidden></div>
+      </div>
+    </section>
+
+    <section class="section container" id="categories" aria-labelledby="categories-title">
+      <div class="section__head reveal">
+        <div>
+          <h2 class="section__title" id="categories-title">Категории</h2>
+          <p class="section__lead">Плагины, рабочие станции и подписки — всё, что нужно в студии.</p>
+        </div>
+      </div>
+      <div id="categories-rail"></div>
+    </section>
+
+    <section class="section container" id="popular" aria-labelledby="popular-title" hidden>
+      <div class="section__head reveal">
+        <div>
+          <h2 class="section__title" id="popular-title">Самое популярное</h2>
+          <p class="section__lead">Чаще всего покупают и смотрят прямо сейчас.</p>
+        </div>
+      </div>
+      <ol class="chart" id="popular-chart"></ol>
+    </section>
+
+    <section class="section container" aria-labelledby="new-title">
+      <div class="section__head reveal">
+        <div>
+          <h2 class="section__title" id="new-title">Новое в SYNQ</h2>
+          <p class="section__lead">Последние поступления каталога.</p>
+        </div>
+        <a class="link-arrow" href="/catalog" id="all-link">Весь каталог</a>
+      </div>
+      <div id="latest" class="product-grid"></div>
+    </section>
+
+
+  </main>
+  <script type="module" src="/js/products.js"></script>
+</body>
+</html>
